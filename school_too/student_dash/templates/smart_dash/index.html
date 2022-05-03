@@ -1,0 +1,25 @@
+{% extends 'smart_dash/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+<div class="row justify-content-center">
+    <div class="col-6">
+        <div class="parent">
+            <div class="child">
+                <h2 class="p-5">Church Statistics</h2>
+            </div>
+        </div>
+        <form  method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success mt-3 " >Submit</button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

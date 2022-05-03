@@ -1,0 +1,190 @@
+
+{% extends 'smart_dash/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'student_dash/resources/css/style.css' %}">
+{% block content %}
+
+<div class="parent">
+    <div class="child">
+    <h2 class="justify-content-center py-5 ">My Church Dashboard</h2>
+</div>
+</div>
+
+    <div class="row mb-3 justify-content-center">
+        
+    
+    <div class="row mt-3 pt-3">
+
+        </div>
+    <div class=" mx-5 col-md-4 shadow">
+        <canvas id="myChart" width="400" height="300"></canvas>
+    </div>
+    <div class=" mx-5 col-md-4 shadow">
+        <div class="my-5 text-center middle">
+            <h1 class>{{ data }}</h1>
+            <h3>Ordained Ministers</h3>
+            <h1>{{ data1 }}</h1>
+            <h3>Licensed Ministers</h3>
+            <h1>{{ data2 }}</h1>
+            <h3>Mission workers</h3>
+       
+    
+    </div>
+    </div>
+</div>
+
+<div class="row mb-3 justify-content-center">
+
+        <div class="row mt-3 pt-3">
+        </div>
+        <div class="mx-5  col-md-4 shadow">
+            <canvas id="myChart2" width="400" height="300"></canvas>
+        
+</div>
+    <div class="mx-5 col-md-4 shadow">
+    <canvas id="myChart3" width="400" height="300"></canvas>
+    </div>
+</div>
+        <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['women','men'],
+                datasets: [{
+                    label: 'Number of women',
+                    data: {{ pie_data }},
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                        xAxes: [{
+                        
+                            display: false
+                        }],
+                        yAxes: [{
+                           
+                            display: false
+                           
+                           
+                        }]
+                    }
+            }
+        });
+        </script>
+
+        <script>
+        const ct = document.getElementById('myChart2').getContext('2d');
+        const myChart2 = new Chart(ct, {
+            type: 'doughnut',
+            data: {
+                labels: ['youth_14-25','youth_25-40'],
+                datasets: [{
+                    label: 'Number of youth',
+                    data: {{ youth_data }},
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                        xAxes: [{
+                        
+                            display: false
+                        }],
+                        yAxes: [{
+                           
+                            display: false
+                           
+                           
+                        }]
+                    }
+            }
+        });
+
+        console.log( [{% for data in data3 %} '{{ data3.created_at }}', {% endfor %}])
+        console.log("{{ data3 }}");
+        </script>
+
+<script>
+    const cty = document.getElementById('myChart3').getContext('2d');
+    const myChart3 = new Chart(cty, {
+        type: 'doughnut',
+        data: {
+            labels: ['children_g1','children_g2','children_g3'],
+            datasets: [{
+                label: 'Number of children',
+                data: {{ children_data }},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                    xAxes: [{
+                    
+                        display: false
+                    }],
+                    yAxes: [{
+                       
+                        display: false
+                       
+                       
+                    }]
+                }
+        }
+    });
+
+    console.log({{ children_data }})
+    </script>
+
+
+    {% endblock %}
+
