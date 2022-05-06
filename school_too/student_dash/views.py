@@ -184,3 +184,5 @@ def report(request):
 
     return render(request,'smart_dash/reports.html', {'form':form})
 
+def nav(request):
+    return render(request,'smart_dash/nav2.html' )
